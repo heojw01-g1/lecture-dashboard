@@ -192,14 +192,14 @@
     white-space:normal;
     word-break:keep-all;
   }
-  .region-원주{background:var(--coral-tint); color:#B8503A;}
-  .region-서울{background:var(--blue-tint); color:#3E5A85;}
-  .region-온라인{background:var(--grey-tint); color:#6B6257;}
-  .region-수도권{background:var(--sage-tint); color:#4C6B44;}
-  .dot-원주{background:var(--coral);}
-  .dot-서울{background:var(--blue);}
-  .dot-온라인{background:var(--grey);}
-  .dot-수도권{background:var(--sage);}
+  .region-서울{background:#FFE7DE; color:#B8503A;}
+  .region-경기도{background:#FBEDD7; color:#8C6323;}
+  .region-강원도{background:#E4EAF3; color:#3E5A85;}
+  .region-충청도{background:#E1F0EC; color:#3D6C60;}
+  .region-경상도{background:#E7EFE2; color:#4C6B44;}
+  .region-전라도{background:#F3E7F1; color:#7A4C74;}
+  .region-제주도{background:#DFF3F0; color:#2E6E66;}
+  .region-공휴일{background:#FBE0DD; color:#B23327; font-weight:600;}
 
   .cta{
     margin-top:48px;
@@ -307,7 +307,7 @@ TODAY.setHours(0, 0, 0, 0);
 // ---- 구글 앱스스크립트 웹 앱 URL ----
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyvNIX3KfAq5ZT30QhTXscw2I1pVwvq44CqnrWvXUvxKmc1DerX7pZMC-EM5WJ4cO1R/exec';
 
-const regions = ['원주','서울','온라인','수도권'];
+const regions = ['서울','경기도','강원도','충청도','경상도','전라도','제주도'];
 const DOW = ['월','화','수','목','금','토','일'];
 const MONTH_NAMES = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 
@@ -390,7 +390,7 @@ function renderCalendar(sessions){
       const cell = document.createElement('div');
       cell.className = 'cell' + ((!inMonth || isPast) ? ' out' : '') + (isToday ? ' today' : '');
       let chipsHtml = daySessions.map(s=>
-        `<div class="chip region-${s.region}">${s.region} ${s.time}</div>`
+        `<div class="chip ${regions.includes(s.region) ? 'region-'+s.region : 'region-공휴일'}">${s.region} ${s.time}</div>`
       ).join('');
       cell.innerHTML = `<span class="num">${day.getDate()}</span>${chipsHtml}`;
       grid.appendChild(cell);
