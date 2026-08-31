@@ -168,7 +168,6 @@
     display:flex;
     flex-direction:column;
     gap:3px;
-    overflow:hidden;
   }
   .cell.out{
     background:transparent;
@@ -190,9 +189,8 @@
     padding:2px 5px;
     border-radius:6px;
     line-height:1.35;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    white-space:normal;
+    word-break:keep-all;
   }
   .region-원주{background:var(--coral-tint); color:#B8503A;}
   .region-서울{background:var(--blue-tint); color:#3E5A85;}
@@ -298,8 +296,6 @@
       </a>
     </div>
   </div>
-
-  <p class="foot-note">이 화면은 더미 일정으로 만든 프로토타입입니다. 실제 배포 시 구글 캘린더와 자동으로 연동됩니다.</p>
 
 </div>
 
