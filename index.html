@@ -342,6 +342,7 @@ function renderCalendar(sessions){
   const lastMonth = new Date(rangeEnd.getFullYear(), rangeEnd.getMonth(), 1);
   let monthIndex = 0;
 
+  const pills = [];
   while(cursor <= lastMonth){
     const y = cursor.getFullYear();
     const m = cursor.getMonth();
@@ -351,7 +352,12 @@ function renderCalendar(sessions){
     const pill = document.createElement('div');
     pill.className = 'monthpill' + (isCurrentMonth ? ' current' : '');
     pill.textContent = MONTH_NAMES[m];
-    pill.onclick = ()=>document.getElementById(monthId).scrollIntoView({behavior:'smooth', block:'start'});
+    pill.onclick = ()=>{
+      pills.forEach(p=>p.classList.remove('current'));
+      pill.classList.add('current');
+      document.getElementById(monthId).scrollIntoView({behavior:'smooth', block:'start'});
+    };
+    pills.push(pill);
     monthnav.appendChild(pill);
 
     const section = document.createElement('div');
@@ -393,6 +399,12 @@ function renderCalendar(sessions){
     cursor = new Date(y, m+1, 1);
     monthIndex++;
   }
+
+  // 고정 헤더 높이만큼 스크롤 여백을 동적으로 확보 (헤더에 가려지지 않도록)
+  const headerHeight = document.querySelector('.sticky-header').offsetHeight;
+  document.querySelectorAll('.month').forEach(sec=>{
+    sec.style.scrollMarginTop = (headerHeight + 12) + 'px';
+  });
 }
 </script>
 </body>
