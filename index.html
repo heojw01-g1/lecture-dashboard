@@ -329,7 +329,12 @@ function regionClass(s){
 const DOW = ['월','화','수','목','금','토','일'];
 const MONTH_NAMES = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 
-function iso(d){ return d.toISOString().slice(0,10); }
+function iso(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
 function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
 function sameMonth(a,b){ return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth(); }
 
